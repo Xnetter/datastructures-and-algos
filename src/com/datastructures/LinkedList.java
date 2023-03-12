@@ -183,4 +183,14 @@ public class LinkedList {
 
         return output.toString();
     }
+
+    private class Node {
+        public int data;
+        public Node next = null;
+
+        public Node(int value){
+            this.data = value;
+        }
+    }
+
 }
