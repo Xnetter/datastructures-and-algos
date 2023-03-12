@@ -117,6 +117,52 @@ public class LinkedList {
         return head == null;
     }
 
+    /***
+     * Takes two linked lists representing numbers, and
+     * returns the summation.
+     */
+    public static LinkedList sumLinkedListNums(LinkedList num1, LinkedList num2){
+        if(num1.isEmpty())
+            return num2;
+        if(num2.isEmpty())
+            return num1;
+
+        // Create the summation linked list.
+        // Create nodes to track the current digit for each number.
+        LinkedList summation = new LinkedList();
+        Node currDigit1 = num1.head;
+        Node currDigit2 = num2.head;
+
+        // Loop over each digit for each number, and add them.
+        int carry = 0;
+        while(currDigit1 != null || currDigit2 != null){
+
+            // Null values are leading zeroes -- treat them as such.
+            int data1 = currDigit1 == null ? 0 : currDigit1.data;
+            int data2 = currDigit2 == null ? 0 : currDigit2.data;
+
+            // Find the current digit, and append it to the list.
+            int sum = data1 + data2 + carry;
+            int newDigit = sum % 10;
+            summation.appendValue(newDigit);
+
+            // Calculate the value that should be carried over.
+            carry = sum / 10;
+
+            // Advance to next digits to add.
+            if(currDigit1 != null)
+                currDigit1 = currDigit1.next;
+            if(currDigit2 != null)
+                currDigit2 = currDigit2.next;
+        }
+
+        // We may have a final carry to add after looping over all digits.
+        if(carry != 0)
+            summation.appendValue(carry);
+
+        return summation;
+    }
+
     /**
      *
      * @return String representation of the linked list.
@@ -136,14 +182,5 @@ public class LinkedList {
         output.append(runner.data + "]");
 
         return output.toString();
-    }
-
-    private class Node {
-        public int data;
-        public Node next = null;
-
-        public Node(int value){
-            this.data = value;
-        }
     }
 }
