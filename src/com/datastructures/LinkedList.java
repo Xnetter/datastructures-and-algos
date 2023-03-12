@@ -120,6 +120,9 @@ public class LinkedList {
     /***
      * Takes two linked lists representing numbers, and
      * returns the summation.
+     *
+     * @param num1 The first number being added.
+     * @param num2 The second number being added.
      */
     public static LinkedList sumLinkedListNums(LinkedList num1, LinkedList num2){
         if(num1.isEmpty())
@@ -127,8 +130,10 @@ public class LinkedList {
         if(num2.isEmpty())
             return num1;
 
-        // Create the summation linked list.
-        // Create nodes to track the current digit for each number.
+        /**
+         * Create the summation linked list.
+         * Create nodes to track the current digit for each number.
+         */
         LinkedList summation = new LinkedList();
         Node currDigit1 = num1.head;
         Node currDigit2 = num2.head;
